@@ -1,8 +1,6 @@
 @extends('layout')
 @section('content')
-{{--
-    <x-layout>
-        <x-slot name="content"> --}}
+
                 <x-latest-videos></x-latest-videos>
                 <h1 class="new-video-title"><i class="fa fa-bolt"></i> پربازدیدترین ویدیوها</h1>
                 <div class="row">
@@ -61,10 +59,4 @@
                     @endforeach
 
                 </div>
-
-        {{-- </x-slot>
-    </x-layout> --}}
-
-
-
 @endsection
