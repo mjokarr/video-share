@@ -1,5 +1,4 @@
 @extends('layout')
-
 @section('content')
             <div id="upload">
                 <div class="row">
@@ -45,4 +44,4 @@
                     <!-- // upload -->
                 </div><!-- // row -->
             </div>
-@endsection('content')
+@endsection()
