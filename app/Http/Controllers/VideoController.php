@@ -22,6 +22,9 @@ class VideoController extends Controller
 
     public function store(Request $requst)
     {
-        dd($requst->all());
+        Video::create($requst->all());
+
+        return redirect()->route('index')->with('alert', 'ویدئوی شما با موفقیت ذخیره شد');
     }
+
 }

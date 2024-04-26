@@ -8,6 +8,12 @@ use Hekmatinasser\Verta\Verta;
 
 class Video extends Model
 {
+    use HasFactory;
+
+    // protected $guarded = [];
+    protected $fillable = ['name', 'length', 'slug', 'thumbnail', 'description', 'url'];
+
+
     protected function getLengthAttribute($value)
     {
         return gmdate('i:s', $value);
