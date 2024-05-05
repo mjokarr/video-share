@@ -12,27 +12,27 @@
                         	<div class="row">
                             	<div class="col-md-6">
                                 	<label>@lang('videos.name')</label>
-                                    <input name="name" type="text" class="form-control" placeholder="@lang('videos.name')">
+                                    <input name="name" type="text" class="form-control" value="{{ old('name') }}" placeholder="@lang('videos.name')">
                                 </div>
                             	<div class="col-md-6">
                                 	<label>@lang('videos.length')</label>
-                                    <input name="length" type="text" class="form-control" placeholder="@lang('videos.length')">
+                                    <input name="length" type="text" class="form-control" value="{{ old('length') }}" placeholder="@lang('videos.length')">
                                 </div>
                             	<div class="col-md-6">
                                 	<label>@lang('videos.slug')</label>
-                                    <input name="slug"  type="text" class="form-control" placeholder="@lang('videos.slug')">
+                                    <input name="slug"  type="text" class="form-control" value="{{ old('slug') }}" placeholder="@lang('videos.slug')">
                                 </div>
                             	<div class="col-md-6">
                                     <label>@lang('videos.url')</label>
-                                    <input name="url" type="text" class="form-control" placeholder="@lang('videos.url')">
+                                    <input name="url" type="text" class="form-control" value="{{ old('url') }}" placeholder="@lang('videos.url')">
                                 </div>
                                 <div class="col-md-6">
                                     <label>@lang('videos.thumbnail')</label>
-                                    <input name="thumbnail" type="text" class="form-control" placeholder="@lang('videos.thumbnail')">
+                                    <input name="thumbnail" type="text" class="form-control" value="{{ old('thumbnail') }}" placeholder="@lang('videos.thumbnail')">
                                 </div>
                             	<div class="col-md-12">
                                 	<label>@lang('videos.description')</label>
-                                    <textarea name="description" class="form-control" rows="4"  placeholder="@lang('videos.description')"></textarea>
+                                    <textarea name="description" class="form-control" rows="4"  value="{{ old('description') }}" placeholder="@lang('videos.description')"></textarea>
                                 </div>
                             	{{-- <div class="col-md-6">
                                 	<label>تصویر</label>
