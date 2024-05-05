@@ -1,10 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreVideoRequest;
 use App\Models\Video;
-
 class VideoController extends Controller
 {
     public function index()
@@ -20,11 +18,12 @@ class VideoController extends Controller
         return view('videos.create');
     }
 
-    public function store(Request $requst)
+    public function store(StoreVideoRequest $request)
     {
-        Video::create($requst->all());
 
-        return redirect()->route('index')->with('alert', 'ویدئوی شما با موفقیت ذخیره شد');
+        Video::create($request->all());
+
+        return redirect()->route('index')->with('alert', __('messages.success'));
     }
 
 }
