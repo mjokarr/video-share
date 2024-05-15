@@ -3,6 +3,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreVideoRequest;
 use App\Models\Video;
+use Illuminate\Http\Request;
+
 class VideoController extends Controller
 {
     public function index()
@@ -26,4 +28,10 @@ class VideoController extends Controller
         return redirect()->route('index')->with('alert', __('messages.success'));
     }
 
+    public function show(Request $request, $id)
+    {
+        $videos = Video::find($id);
+
+        return view('videos.show', compact('videos'));
+    }
 }

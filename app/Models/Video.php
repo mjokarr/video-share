@@ -24,4 +24,10 @@ class Video extends Model
         $newVertaTime = new Verta($value);
         return $newVertaTime->formatDifference();
     }
+
+    public function relatedVideos(int $count = 6)
+    {
+        return Video::all()->random($count);
+    }
+
 }

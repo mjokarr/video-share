@@ -5,6 +5,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\VideoController;
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
-Route::get('/create', [VideoController::class, 'create'])->name('video.store');
-Route::get('/video/create', [VideoController::class, 'create'])->name('video.store');
+Route::get('/create', [VideoController::class, 'create'])->name('videos.store');
+Route::get('/videos/create', [VideoController::class, 'create'])->name('videos.store');
 Route::post('/videos', [VideoController::class, 'store']);
+Route::get('videos/{id}', [VideoController::class, 'show'])->name('videos.show');
