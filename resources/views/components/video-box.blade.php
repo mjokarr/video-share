@@ -10,7 +10,7 @@
             <a href="{{ route('videos.edit', $video->slug) }}">
             <i class="fa fa-pencil" aria-hidden="true"></i>
             </a>
-            <a class="channel-name" href="#"> User
+            <a class="channel-name" href="#"> کاربر
                 <span>
                     <i class="fa fa-check-circle"></i>
                 </span>

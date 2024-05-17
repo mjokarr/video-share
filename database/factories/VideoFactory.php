@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Ybazli\Faker\Facades\Faker;
+// use Ybazli\Faker\Faker;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
@@ -17,11 +19,11 @@ class VideoFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
-            'url' => 'https://www.aparat.com/v/xfUm2',
+            'name' => Faker::fullName(),
+            'url' => 'https://www.aparat.com',
             'length' => rand(100,999),
             'slug' => $this->faker->slug(),
-            'description' => $this->faker->text(),
+            'description' => Faker::sentence(),
             'thumbnail' => 'https://loremflickr.com/320/240?random=' . rand(1,1000),
         ];
     }

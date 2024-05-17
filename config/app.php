@@ -87,6 +87,8 @@ return [
 
     'faker_locale' => env('APP_FAKER_LOCALE', 'en_US'),
 
+    'Faker' => Ybazli\Faker\Facades\Faker::class,
+
     /*
     |--------------------------------------------------------------------------
     | Encryption Key
