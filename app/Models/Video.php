@@ -14,9 +14,14 @@ class Video extends Model
     protected $fillable = ['name', 'length', 'slug', 'thumbnail', 'description', 'url'];
 
 
-    protected function getLengthAttribute($value)
+    public function getRouteKeyName()
     {
-        return gmdate('i:s', $value);
+        return 'slug';
+    }
+
+    protected function getLengthToHumanAttribute()
+    {
+        return gmdate('i:s', $this->value);
     }
 
     protected function getCreatedAtAttribute($value)

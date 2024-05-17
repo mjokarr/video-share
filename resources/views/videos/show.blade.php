@@ -5,7 +5,6 @@
     <!-- Watch -->
     <div class="col-md-8">
         <div id="watch">
-
             <!-- Video Player -->
             <h1 class="video-title">{{ $videos->name }}</h1>
             <div class="video-code">

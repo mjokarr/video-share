@@ -4,8 +4,9 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
-class StoreVideoRequest extends FormRequest
+class UpdateVideoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +26,7 @@ class StoreVideoRequest extends FormRequest
         return [
             'name' => ['required'],
             'length' => ['required', 'integer'],
-            'slug' => ['required', 'unique:videos,slug', 'alpha_dash'],
+            'slug' => ['required', Rule::unique('videos')->ignore($this->video), 'alpha_dash'],
             'url' => ['required'],
             'thumbnail' => ['required', 'url']
         ];
