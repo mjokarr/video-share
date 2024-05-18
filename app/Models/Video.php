@@ -30,9 +30,20 @@ class Video extends Model
         return $newVertaTime->formatDifference();
     }
 
-    public function relatedVideos(int $count = 6)
+    public function relatedVideos(int $count = 0)
     {
+        # If my number of db videos lower than $count, we get an error in the videos.show page.
+        # So, we need to get the number of videos in the db first, and after that compare them with $count.
+
+        $numberOfVideosInDatabase = count(Video::all());
+
+        if ($count > $numberOfVideosInDatabase)
+        {
+            return $newResult = Video::all()->random($numberOfVideosInDatabase);
+        }
         return Video::all()->random($count);
     }
+
+
 
 }
