@@ -11,7 +11,7 @@ class Video extends Model
     use HasFactory;
 
     // protected $guarded = [];
-    protected $fillable = ['name', 'length', 'slug', 'thumbnail', 'description', 'url'];
+    protected $fillable = ['name', 'length', 'slug', 'thumbnail', 'description', 'url', 'category_id'];
 
 
     public function getRouteKeyName()
@@ -50,4 +50,8 @@ class Video extends Model
         return $this->belongsTo(Category::class);
     }
 
+    protected function getCategoryNameAttribute()
+    {
+        return $this->category?->name;
+    }
 }

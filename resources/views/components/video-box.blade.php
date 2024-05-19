@@ -17,6 +17,7 @@
             </a>
             <span class="views"><i class="fa fa-eye"></i>0</span>
             <span class="date"><i class="fa fa-clock-o"></i>{{ $video->created_at }}</span>
+            <span class="category"><i class="fa fa-tag"></i>{{ $video->category_name }}</span>
         </div>
     </div>
 </div>

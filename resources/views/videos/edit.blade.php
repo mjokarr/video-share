@@ -28,6 +28,16 @@
                                     <input name="url" type="text" class="form-control" value="{{ $video->url }}" placeholder="@lang('videos.url')">
                                 </div>
                                 <div class="col-md-6">
+                                    <label>@lang('videos.category')</label>
+                                    <select class="form-control" name="category_id" id="category">
+
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}" {{ $category->id == $video->category_id ? 'selected' : '' }}>{{ $category->name }}</option>
+                                        @endforeach
+
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
                                     <label>@lang('videos.thumbnail')</label>
                                     <input name="thumbnail" type="text" class="form-control" value="{{ $video->thumbnail }}" placeholder="@lang('videos.thumbnail')">
                                 </div>

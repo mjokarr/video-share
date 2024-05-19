@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreVideoRequest;
 use App\Http\Requests\UpdateVideoRequest;
+use App\Models\Category;
 use App\Models\Video;
 use Illuminate\Http\Request;
 
@@ -19,13 +20,13 @@ class VideoController extends Controller
     # Create Video Page.
     public function create()
     {
-        return view('videos.create');
+        $categories = Category::all();
+        return view('videos.create', compact('categories'));
     }
 
     # Get Data Validations From App\Http\Requests\StoreVideoRequest, Store, Redirection, and show message to user.
     public function store(StoreVideoRequest $request)
     {
-
         Video::create($request->all());
 
         return redirect()->route('index')->with('alert', __('messages.success'));
@@ -42,8 +43,8 @@ class VideoController extends Controller
     # Show edit video page and set a new data with redirection plus slug Instead of int ID parameter and that message to user.
     public function edit(Video $video)
     {
-        // dd($video);
-        return view('videos.edit', ['video' => $video]);
+        $categories = Category::all();
+        return view('videos.edit', ['video' => $video, 'categories' => $categories]);
 
     }
 
