@@ -44,6 +44,10 @@ class Video extends Model
         return Video::all()->random($count);
     }
 
-
+    # Create Relation to Category Class with category method.
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 
 }

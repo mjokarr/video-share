@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
+
+    # Create Relation to Category Class with category method.
+    public function videos()
+    {
+        return $this->hasMany(Video::class);
+    }
 }

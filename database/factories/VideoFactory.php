@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Ybazli\Faker\Facades\Faker;
 // use Ybazli\Faker\Faker;
@@ -11,7 +12,7 @@ use Ybazli\Faker\Facades\Faker;
  */
 class VideoFactory extends Factory
 {
-    /**
+    /**q
      * Define the model's default state.
      *
      * @return array<string, mixed>
@@ -25,6 +26,7 @@ class VideoFactory extends Factory
             'slug' => $this->faker->slug(),
             'description' => Faker::sentence(),
             'thumbnail' => 'https://loremflickr.com/320/240?random=' . rand(1,1000),
+            'category_id' => Category::first() ?? Category::Factory(),
         ];
     }
 }
