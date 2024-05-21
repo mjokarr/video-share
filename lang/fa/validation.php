@@ -165,11 +165,15 @@ return [
             "mobile" => "تلفن همراه",
             "age" => "سن",
             "sex" => "جنسیت",
-            'national_code' => 'کد ملی'
+            'national_code' => 'کد ملی',
+            "category_id" => 'دسته‌بندی',
+
         ],
         "data" => [
             "password" => 'رمز عبور'
-        ]
+        ],
     ],
     'national_code' => 'کد ملی صحیح نمیباشد',
+    "category_id" => 'دسته‌بندی',
+    "category id" => 'دسته‌بندی',
 ];

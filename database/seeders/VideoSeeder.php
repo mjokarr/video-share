@@ -14,7 +14,7 @@ class VideoSeeder extends Seeder
     {
         // Video::factory()->count(5)->create();
         Video::factory()
-        ->count(6)
+        ->count(100)
         ->create();
     }
 }
