@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\Category;
+use Hekmatinasser\Verta\Verta;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Hekmatinasser\Verta\Verta;
 
 class Video extends Model
 {
