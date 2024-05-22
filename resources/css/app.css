@@ -4,3 +4,6 @@
 /* @import "./fonts/IRANSansWeb_Bold.woff2";
 @import "./fonts/IRANSansWeb.woff2";
 @import "./fonts/IRANSansWeb_Light.woff2"; */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
