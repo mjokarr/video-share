@@ -51,6 +51,7 @@ class Video extends Model
         return $this->belongsTo(Category::class);
     }
 
+    # used in video box component to show category information.
     protected function getCategoryNameAttribute()
     {
         return $this->category?->name;

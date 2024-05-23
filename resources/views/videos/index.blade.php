@@ -9,4 +9,8 @@
                     @endforeach
 
                 </div>
+                {{-- <h1>hello from this place</h1> --}}
+                <div dir="rtl" class="text-center">
+                    {{ $videos->links('pagination::bootstrap-4') }}
+                </div>
 @endsection
