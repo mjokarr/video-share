@@ -75,10 +75,10 @@ class Video extends Model
     {
         return $this->category?->name;
     }
-    
+
     protected function getGravatarAttribute ()
     {
-        $hash = md5($this->email);
+        $hash = md5(strtolower($this->attributes['email']));
         return "https://s.gravatar.com/avatar/$hash";
     }
 }
