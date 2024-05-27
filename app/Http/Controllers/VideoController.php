@@ -37,7 +37,7 @@ class VideoController extends Controller
     {
         // $videos = Video::find($video);
 
-        return view('videos.show', ['videos' => $video]);
+        return view('videos.show', ['videos' => $video]); 
     }
 
     # Show edit video page and set a new data with redirection plus slug Instead of int ID parameter and that message to user.

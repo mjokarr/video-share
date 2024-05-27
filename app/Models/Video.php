@@ -33,16 +33,35 @@ class Video extends Model
 
     public function relatedVideos(int $count = 0)
     {
-        # If my number of db videos lower than $count, we get an error in the videos.show page.
-        # So, we need to get the number of videos in the db first, and after that compare them with $count.
+        // return $this->category()->where('id', 2)->videos()->all();
+        // die;
 
-        $numberOfVideosInDatabase = count(Video::all());
+            #################################################
+            # NOTICE: Catching slug from url to find the video that is active on this page.
+            #################################################
+            $currentUrl = url()->current(); // get url
+            $currentUrl = explode('/', $currentUrl); // Converting to Arr
+            $currentVideoSlug = $currentUrl[4]; // Getting slug from url
 
-        if ($count > $numberOfVideosInDatabase)
-        {
-            return $newResult = Video::all()->random($numberOfVideosInDatabase);
-        }
-        return Video::all()->random($count);
+            $routeKeyName = $this->getRouteKeyName() ?? 'id';
+            $getCurrentVideo = $this->where($routeKeyName, $currentVideoSlug)->get(); // Getting current video by slug
+            $getCurrentVideoCategoryId = $getCurrentVideo[0]->category_id; // Getting current category id
+
+            $query = $this->where('category_id', $getCurrentVideoCategoryId);
+
+            $allVideosInCategory = $query->get()->all();
+            $numberOfAllVideosInCategory = count($allVideosInCategory);
+            #################################################
+            # NOTICE: Validation for count of related videos.
+            #################################################
+            if($count > $numberOfAllVideosInCategory)
+            {
+                return $query->get()->random($numberOfAllVideosInCategory);
+
+            }
+            return $result = $query->get()->take($count);
+
+            // dd($result);
     }
 
     # Create Relation to Category Class with category method.
@@ -55,5 +74,11 @@ class Video extends Model
     protected function getCategoryNameAttribute()
     {
         return $this->category?->name;
+    }
+    
+    protected function getGravatarAttribute ()
+    {
+        $hash = md5($this->email);
+        return "https://s.gravatar.com/avatar/$hash";
     }
 }

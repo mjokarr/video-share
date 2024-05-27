@@ -29,6 +29,7 @@ return [
     ],
     "boolean"          => "فیلد :attribute فقط میتواند صحیح و یا غلط باشد",
     "confirmed"        => ":attribute با تاییدیه مطابقت ندارد.",
+    "credentials"      => "مقادیر ورودی، صحیح نمی‌باشد",
     "date"             => ":attribute یک تاریخ معتبر نیست.",
     "date_format"      => ":attribute با الگوی :format مطاقبت ندارد.",
     "different"        => ":attribute و :other باید متفاوت باشند.",
@@ -74,6 +75,8 @@ return [
     "timezone"         => "فیلد :attribute باید یک منطقه صحیح باشد.",
     "unique"           => ":attribute قبلا انتخاب شده است.",
     "url"              => "فرمت آدرس :attribute اشتباه است.",
+    "lowercase"     => ":attribute باید با حروف کوچک باشد",
+    // "credentials"   => ":attribute یا :attribute شما صحیح نمی‌باشد.",
 
     /*
     |--------------------------------------------------------------------------
@@ -101,7 +104,7 @@ return [
     'attributes' => [
         "name" => "نام",
         "username" => "نام کاربری",
-        "email" => "پست الکترونیکی",
+        "email" => "ایمیل",
         "first_name" => "نام",
         "last_name" => "نام خانوادگی",
         "family" => "نام خانوادگی",
@@ -170,5 +173,5 @@ return [
     ],
     'national_code' => 'کد ملی صحیح نمیباشد',
     "category_id" => 'دسته‌بندی',
-    "category id" => 'دسته‌بندی',
+
 ];

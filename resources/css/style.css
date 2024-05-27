@@ -101,10 +101,10 @@ h4{
 }
 p{
 	font-family: 'IRANSansWeb', sans-serif;
-	font-size: 14px;
+	font-size: 13.5px;
 	font-weight: 300;
 	color: #aaaaaf;
-	line-height: 24px;
+	line-height: 15px;
 }
 
 
@@ -1381,19 +1381,19 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	}
 .log-in-form{
 	font-family: 'IRANSansWeb', sans-serif;
-	max-width:470px;
+	max-width:37rem;
 	background-color: #FFF;
 	margin-right: auto;
 	margin-left: auto;
-	margin-top: 100px;
-	margin-bottom: 100px;
+	margin-top: 60px;
+	margin-bottom: 60px;
 	font-size: 13px;
 	color: #888da8;
 	font-weight: 300;
 }
 .log-in-form #log-in-head{
-	background-color: #444444;
-	padding: 20px;
+    background-color: #444444;
+    padding: 15px;
 }
 .log-in-form #log-in-head h1{
 	font-family: 'IRANSansWeb', sans-serif;
@@ -1405,18 +1405,18 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	text-transform: uppercase;
 }
 .log-in-form .form-output{
-	padding: 30px;
+	padding: 26px;
 	}
 .log-in-form .form-output label{
 	font-family: 'IRANSansWeb', sans-serif;
-	font-size: 14px;
-	text-transform: capitalize;
-	color: #686868;
+    font-size: 13px;
+    text-transform: capitalize;
+    color: #686868d1;
 }
 .log-in-form  .form-control{
-	border-radius: 0px;
-	-webkit-box-shadow:none;
-	height: 50px;
+    border-radius: 2px;
+    -webkit-box-shadow: none;
+    height: 38px
 }
 .log-in-form .remember:after{
 	content:" ";
@@ -1437,23 +1437,24 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	float: left;
 }
 .log-in-form .or{
-	margin-top: 20px;
-	border-bottom-width: 1px;
-	border-bottom-style: solid;
-	border-bottom-color: #D6D6D6;
-	margin-bottom: 20px;
+    margin-top: 17px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #D6D6D6;
+    margin-bottom: 17px;
 	}
 .log-in-form  .btn-primary{
-	border-radius: 0px;
-	background-color: #575757;
-	width: 100%;
-	border-top-style: none;
-	border-right-style: none;
-	border-bottom-style: none;
-	border-left-style: none;
-	margin-top: 20px;
-	margin-left: 10px;
-	margin-bottom: 10px;
+    border-radius: 3px;
+    background-color: #575757;
+    width: 100%;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    margin-top: 15px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    font-size: larger;
 	}
 .log-in-form   .bg-facebook{
 	background-color: #2f5b9d;
@@ -2489,4 +2490,22 @@ font-style: italic;
 	text-transform: uppercase;
 	padding-top: 8px;
 	padding-bottom: 8px;
+}
+.register-key-in-login-page {
+    color: #333333d6;
+}
+.register-key-in-login-page:hover {
+    color: #334eb7d6;
+    font-weight: 600;
+}
+.log-in-key-in-register-page {
+    color: #333333d6;
+}
+.log-in-key-in-register-page:hover {
+    color: #831919d6;
+    font-weight: 600;
+}
+#forget-password-key-in-log-in-page:hover {
+    color: #334eb7d6;
+    font-weight: 600;
 }
