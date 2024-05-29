@@ -5,7 +5,11 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VideoController;
 
+use App\Mail\VerifyEmail;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
+
+
 
 
 
@@ -31,3 +35,8 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::get('/email', function (){
+    $user = User::first();
+    Mail::to('mo.jokar80@gmail.com')->send(new VerifyEmail($user));
+});
