@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Ybazli\Faker\Facades\Faker;
 // use Ybazli\Faker\Faker;
@@ -27,6 +28,7 @@ class VideoFactory extends Factory
             'description' => Faker::sentence(),
             'thumbnail' => 'https://loremflickr.com/320/240?random=' . rand(1,1000),
             'category_id' => Category::first() ?? Category::Factory(),
+            'user_id' => User::first() ?? User::Factory(),
         ];
     }
 }

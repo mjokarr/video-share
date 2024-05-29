@@ -14,7 +14,10 @@ class VideoController extends Controller
         $videos = Video::all()->random(6);
         $mostViewedVideos = Video::all()->random(6);
         $mostPopularVideos = Video::all()->random(6);
-        return view('videos.index', compact('videos', 'mostViewedVideos', 'mostPopularVideos'));
+        // return view('videos.index', compact('videos', 'mostViewedVideos', 'mostPopularVideos'));
+        return view()->composer('videos.index', function ($view) {
+
+        });
     }
 
     # Create Video Page.
@@ -27,8 +30,8 @@ class VideoController extends Controller
     # Get Data Validations From App\Http\Requests\StoreVideoRequest, Store, Redirection, and show message to user.
     public function store(StoreVideoRequest $request)
     {
-        Video::create($request->all());
-
+        // Video::create($request->all());
+        $request->user()->videos()->create($request->all());
         return redirect()->route('index')->with('alert', __('messages.success'));
     }
 
@@ -37,7 +40,7 @@ class VideoController extends Controller
     {
         // $videos = Video::find($video);
 
-        return view('videos.show', ['videos' => $video]); 
+        return view('videos.show', ['videos' => $video]);
     }
 
     # Show edit video page and set a new data with redirection plus slug Instead of int ID parameter and that message to user.

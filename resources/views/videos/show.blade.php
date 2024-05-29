@@ -1,6 +1,5 @@
 @extends('layout')
 @section('content')
-
 <div class="row">
     <!-- Watch -->
     <div class="col-md-8">
@@ -48,10 +47,10 @@
             <!-- Chanels Item -->
             <div class="chanel-item">
                 <div class="chanel-thumb">
-                    <a href="#"><img src="demo_img/ch-1.jpg" alt=""></a>
+                    <a href="#"><img style="border-radius:6px;" src="{{ $videos->owner_avatar }}" alt=""></a>
                 </div>
                 <div class="chanel-info">
-                    <a class="title" href="#">داود طاهری</a>
+                    <a class="title" href="#">{{ $videos->owner_name }}</a>
                     <span class="subscribers">436,414 اشتراک</span>
                 </div>
                 <a href="#" class="subscribe">اشتراک</a>

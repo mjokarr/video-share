@@ -44,4 +44,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function videos()
+    {
+        return $this->hasMany(Video::class);
+    }
 }
