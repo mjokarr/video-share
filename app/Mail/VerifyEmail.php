@@ -18,7 +18,7 @@ class VerifyEmail extends Mailable implements ShouldQueue
      */
     public function __construct()
     {
-        $this->onQueue('high');
+        // $this->onQueue('high');
     }
 
     /**
