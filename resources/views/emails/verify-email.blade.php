@@ -1,10 +1,10 @@
 <x-mail::message>
-# Order Shipped
+# Email Verifaction
 
 you are loged in, now
 
 <x-mail::button :url="$url">
-view dashboard</x-mail::button>
+view you'r dashboard</x-mail::button>
 
 good luck,<br>
 {{ config('app.name') }}

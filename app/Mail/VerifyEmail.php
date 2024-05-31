@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class VerifyEmail extends Mailable
+class VerifyEmail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -18,7 +18,7 @@ class VerifyEmail extends Mailable
      */
     public function __construct()
     {
-        //
+        $this->onQueue('high');
     }
 
     /**

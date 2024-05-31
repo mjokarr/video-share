@@ -65,8 +65,8 @@
                     <div class="dropdown">
                         <a data-toggle="dropdown" href="#" class="user-area">
                             <div class="thumb"><img
-                                {{-- src="{{  }}" alt=""> --}}
-                                    src="{{ "https://s.gravatar.com/avatar/" . md5(auth()->user()->email) }}" alt="">
+                                src="{{ auth()->user()->gravatar }}" alt="">
+                                    {{-- src="{{ "https://s.gravatar.com/avatar/" . md5(auth()->user()->email) }}" alt=""> --}}
 
                             </div>
                             <h2>{{ auth()->user()->name }}</h2>
@@ -75,7 +75,7 @@
                         </a>
                         <ul class="dropdown-menu account-menu">
                             <li><a href="#"><i class="fa fa-edit color-1"></i>ویرایش پروفایل</a></li>
-                            <li><a href="#"><i class="fa fa-video-camera color-2"></i>اضافه کردن فیلم</a></li>
+                            <li><a href="{{ route('videos.store') }}"><i class="fa fa-video-camera color-2"></i>اضافه کردن فیلم</a></li>
                             <li><a href="#"><i class="fa fa-star color-3"></i>برگزیده</a></li>
                             <li><a href="{{ route('logout') }}"><i class="fa fa-sign-out color-4"></i>خروج</a></li>
                         </ul>
