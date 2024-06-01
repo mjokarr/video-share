@@ -10,7 +10,8 @@
 
   <div class="form-output">
     <x-validation-errors></x-validation-errors>
-      <form action="{{ route('register.store') }}" method="POST">
+    <x-alert></x-alert>
+    <form action="{{ route('register.store') }}" method="POST">
         @csrf
           <div class="form-group label-floating">
               <label class="control-label">نام</label>

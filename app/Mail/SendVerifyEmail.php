@@ -9,16 +9,21 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class VerifyEmail extends Mailable implements ShouldQueue
+class SendVerifyEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
+ public static $toMailCallback;
+
+    // public $notifiable;
+    public $hashUrl;
     /**
      * Create a new message instance.
      */
-    public function __construct()
-    {
-        // $this->onQueue('high');
+    public function __construct($hashUrl){
+        // $this->notifiable = $notifiable;
+        // $this->onQueue('sendEmail');
+        $this->hashUrl = $hashUrl;
     }
 
     /**
@@ -26,8 +31,9 @@ class VerifyEmail extends Mailable implements ShouldQueue
      */
     public function envelope(): Envelope
     {
+        $subject = __('messages.Verify-Email-Address');
         return new Envelope(
-            subject: 'Verify Email',
+            subject: $subject,
         );
     }
 
@@ -36,11 +42,12 @@ class VerifyEmail extends Mailable implements ShouldQueue
      */
     public function content(): Content
     {
+        // dd($this->hashUrl);
         return new Content(
-            markdown: 'emails.verify-email',
+            markdown: 'mail.verify.email',
             with: [
-                'url' => 'https://www.googe.com',
-            ]
+                'hashUrl' => $this->hashUrl,
+            ],
         );
     }
 

@@ -1,12 +1,13 @@
 <x-mail::message>
-# Introduction
+# سلام و درود
 
-The body of your message.
+برای تایید کردن ایمیل خود، لطفا دکمه‌ی زیر را بزنید
 
-<x-mail::button :url="''">
-Button Text
+<x-mail::button :url="$hashUrl">
+تایید ایمیل
 </x-mail::button>
 
-Thanks,<br>
-{{ config('app.name') }}
+احتراما<br>
+سیستم اشتراک ویدئو
+{{-- {{ config('app.name') }} --}}
 </x-mail::message>
