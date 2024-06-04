@@ -15,6 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
             'verifyEmail' => CheckVerifyEmail::class,
+            // 'auth' => ForReWrite::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

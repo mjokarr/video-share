@@ -7,16 +7,15 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class RelatedVideos extends Component
+class Comments extends Component
 {
+    public $videos;
     /**
      * Create a new component instance.
      */
-    public $videos;
-
-    public function __construct(Video $video)
+    public function __construct(Video $videos)
     {
-        $this->videos = $video->relatedVideos(10)->load('user');
+        $this->videos = $videos;
     }
 
     /**
@@ -24,6 +23,6 @@ class RelatedVideos extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.related-videos');
+        return view('components.comments');
     }
 }

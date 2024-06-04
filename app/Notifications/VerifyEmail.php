@@ -63,8 +63,8 @@ class VerifyEmail extends Notification
             return call_user_func(static::$toMailCallback, $notifiable, $verificationUrl);
         }
         $getUserEmail = $notifiable->email;
-
-        return $this->buildMailMessage($getUserEmail, $verificationUrl);
+        // $getUserEmail,
+        return $this->buildMailMessage($verificationUrl);
     }
 
 
@@ -83,15 +83,15 @@ class VerifyEmail extends Notification
         );
     }
 
-    protected function buildMailMessage($getUserEmail, $url)
+    protected function buildMailMessage($url)
     {
         // dd($getUserEmail);
-        return Mail::to($getUserEmail)->send(new SendVerifyEmail($url));
-        // return (new MailMessage)
-        //     ->subject(Lang::get('Verify Email Address'))
-        //     ->line(Lang::get('Please click the button below to verify your email address.'))
-        //     ->action(Lang::get('Verify Email Address'), $url)
-        //     ->line(Lang::get('If you did not create an account, no further action is required.'));
+        // return Mail::to($getUserEmail)->send(new SendVerifyEmail($url));
+        return (new MailMessage)
+            ->subject(Lang::get('Verify Email Address'))
+            ->line(Lang::get('Please click the button below to verify your email address.'))
+            ->action(Lang::get('Verify Email Address'), $url)
+            ->line(Lang::get('If you did not create an account, no further action is required.'));
     }
 
     /**

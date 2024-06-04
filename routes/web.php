@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryVideoController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VideoController;
@@ -15,6 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
+
 
 
 
@@ -41,4 +43,6 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::post('/videos/{video}/comments', [CommentController::class, 'store'])->name('comments.store');
 

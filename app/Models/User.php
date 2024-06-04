@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Comment;
 use App\Notifications\VerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -62,5 +63,8 @@ class User extends Authenticatable
         $this->notify(new VerifyEmail);
     }
 
-
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

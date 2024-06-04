@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\User;
 use Hekmatinasser\Verta\Verta;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -15,6 +16,7 @@ class Video extends Model
     // protected $guarded = [];
     protected $fillable = ['name', 'length', 'slug', 'thumbnail', 'description', 'url', 'category_id'];
 
+    // protected $with = ['user', 'category', 'comments'];
 
     public function getRouteKeyName()
     {
@@ -86,6 +88,8 @@ class Video extends Model
 
     protected function getOwnerNameAttribute ()
     {
+        // return $this->with('user')->user?->name;
+        // return $this->user?->name->with('user');
         return $this->user?->name;
     }
 
@@ -95,5 +99,9 @@ class Video extends Model
         return 'https://s.gravatar.com/avatar/' . $hash;
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
 

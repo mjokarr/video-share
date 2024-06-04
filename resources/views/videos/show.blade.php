@@ -2,7 +2,10 @@
 @section('content')
 <div class="row">
     <!-- Watch -->
+    <x-validation-errors></x-validation-errors>
+    <x-alert></x-alert>
     <div class="col-md-8">
+
         <div id="watch">
             <!-- Video Player -->
             <h1 class="video-title">{{ $videos->name }}</h1>
@@ -60,64 +63,20 @@
 
             <!-- Comments -->
             <div id="comments" class="post-comments">
-                <h3 class="post-box-title"><span>19</span> نظرات</h3>
+                <h3 class="post-box-title"><span>{{ $videos->comments->count() }}</span> نظر</h3>
                 <ul class="comments-list">
-                    <li>
-                        <div class="post_author">
-                            <div class="img_in">
-                                <a href="#"><img src="demo_img/c1.jpg" alt=""></a>
-                            </div>
-                            <a href="#" class="author-name">داود طاهری</a>
-                            <time datetime="2017-03-24T18:18">مرداد 27, 1397 - 11:00</time>
-                        </div>
-                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
-                            گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
-                        </p>
-                        <a href="#" class="reply">پاسخ</a>
-
-                        <ul class="children">
-                            <li>
-                                <div class="post_author">
-                                    <div class="img_in">
-                                        <a href="#"><img src="demo_img/c2.jpg" alt=""></a>
-                                    </div>
-                                    <a href="#" class="author-name">بهمن نجاتی</a>
-                                    <time datetime="2017-03-24T18:18">مرداد 27, 1397 - 11:00</time>
-                                </div>
-                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
-                                    طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و
-                                    سطرآنچنان که لازم است</p>
-                                <a href="#" class="reply">پاسخ</a>
-                            </li>
-                        </ul>
-
-
-                    </li>
-                    <li>
-                        <div class="post_author">
-                            <div class="img_in">
-                                <a href="#"><img src="demo_img/c2.jpg" alt=""></a>
-                            </div>
-                            <a href="#" class="author-name">بهمن نجاتی</a>
-                            <time datetime="2017-03-24T18:18">مرداد 27, 1397 - 11:00</time>
-                        </div>
-                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
-                            گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
-                        </p>
-                        <a href="#" class="reply">پاسخ</a>
-                    </li>
+                    <x-comments :videos='$videos' />
 
                 </ul>
 
-
+                @auth
                 <h3 class="post-box-title">ارسال نظرات</h3>
-                <form>
-                    <input type="text" class="form-control" id="Name" placeholder="نام">
-                    <input type="email" class="form-control" id="Email" placeholder="ایمیل">
-                    <input type="text" class="form-control" placeholder="سایت">
-                    <textarea class="form-control" rows="8" id="Message" placeholder="پیام"></textarea>
-                    <button type="button" id="contact_submit" class="btn btn-dm">ارسال پیام</button>
+                <form action="{{ route('comments.store', $videos) }}" method="post">
+                    @csrf
+                    <textarea class="form-control" rows="8" name="body" id="Message" placeholder="متن پیام"></textarea>
+                    <button type="submit" id="contact_submit" class="btn btn-dm">ثبت نظر</button>
                 </form>
+                @endauth
             </div>
             <!-- // Comments -->
 

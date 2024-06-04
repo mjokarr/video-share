@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Comment;
 use App\Models\Video;
+use Illuminate\Http\Request;
+
 class IndexController extends Controller
 {
     public function index()
     {
-        // $videos = Video::all()->random(6);
-        $mostPopularVideos = Video::all()->random(6);
-        $mostViewedVideos = Video::all()->random(6);
+        $mostPopularVideos = Video::with('user', 'category')->get()->random(6);
+        $mostViewedVideos = Video::with('user')->get()->random(6);
         return view('index', compact('mostPopularVideos', 'mostViewedVideos'));
     }
 }

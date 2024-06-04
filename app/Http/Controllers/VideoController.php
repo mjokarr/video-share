@@ -45,7 +45,7 @@ class VideoController extends Controller
     # Show Video Page and get Data From Illuminate Request file. | Notice: use Video Model Instead of int parameter to laravel auto validation and show 404 Error
     public function show(Request $request, Video $video)
     {
-        // $videos = Video::find($video);
+        $videos = $video->load('comments.user');
 
         return view('videos.show', ['videos' => $video]);
     }
