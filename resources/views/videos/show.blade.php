@@ -26,10 +26,12 @@
             </div>
 
             <div class="video-share">
+            @auth
                 <ul class="like">
-                    <li><a class="deslike" href="#">1250 <i class="fa fa-thumbs-down"></i></a></li>
-                    <li><a class="like" href="#">1250 <i class="fa fa-thumbs-up"></i></a></li>
+                    <li><a class="deslike" href="{{ route('video.dislike', $videos) }}">{{ $videos->dislike_count }}<i class="fa fa-thumbs-down"></i></a></li>
+                    <li><a class="like" href="{{ route('video.like', $videos) }}">{{ $videos->like_count }}<i class="fa fa-thumbs-up"></i></a></li>
                 </ul>
+            @endauth
                 <ul class="social_link">
                     <li><a class="facebook" href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
                     </li>
