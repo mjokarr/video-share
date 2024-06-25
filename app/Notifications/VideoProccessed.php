@@ -43,7 +43,7 @@ class VideoProccessed  extends Notification implements ShouldQueue
             ->line('The introduction to the notification.')
             ->action('Notification Action', url('/'))
             ->line('Thank you for using our application!');
-        // Mail::to('Admin@gmail.com')->send(new VerifyEmail);
+        // Mail::to('Admin@gmail.com')->send(new SendVerifyEmail());
     }
 
     /**

@@ -1,13 +1,16 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Http\Middleware\CheckVerifyEmail;
-use App\Http\Requests\StoreVideoRequest;
-use App\Http\Requests\UpdateVideoRequest;
-use App\Models\Category;
 use App\Models\Video;
+use App\Models\Category;
 use GuzzleHttp\Middleware;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\StoreVideoRequest;
+use App\Http\Middleware\CheckVerifyEmail;
+use App\Http\Requests\UpdateVideoRequest;
+use Illuminate\Validation\Rules\Exists;
 
 class VideoController extends Controller
 {
@@ -37,6 +40,10 @@ class VideoController extends Controller
     # Get Data Validations From App\Http\Requests\StoreVideoRequest, Store, Redirection, and show message to user.
     public function store(StoreVideoRequest $request)
     {
+        $path = Storage::putFile('/public', $request->file('file'));
+        $request->merge([
+            'url' => $path,
+        ]);
         // Video::create($request->all());
         $request->user()->videos()->create($request->all());
         return redirect()->route('index')->with('alert', __('messages.success'));
@@ -45,7 +52,7 @@ class VideoController extends Controller
     # Show Video Page and get Data From Illuminate Request file. | Notice: use Video Model Instead of int parameter to laravel auto validation and show 404 Error
     public function show(Request $request, Video $video)
     {
-        $videos = $video->load('comments.user');
+        $video->load('comments.user');
 
         return view('videos.show', ['videos' => $video]);
     }
@@ -56,11 +63,20 @@ class VideoController extends Controller
         $categories = Category::all();
         return view('videos.edit', ['video' => $video, 'categories' => $categories]);
 
+
+
     }
 
     # this is a simple update only :)
     public function update(UpdateVideoRequest $request, Video $video)
     {
+        if($request->hasFile('file'))
+        {
+            $path = Storage::putFile('/public', $request->file('file'));
+            $request->merge([
+                'url' => $path,
+            ]);
+        }
         $video->update($request->all());
         return redirect()->route('videos.show', $video->slug)->with('alert', __('messages.video_edit_success'));
     }

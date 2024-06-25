@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Video;
 use Illuminate\Http\Request;
+use Symfony\Component\CssSelector\Node\FunctionNode;
 
-class LikeController extends Controller
+class DislikeController extends Controller
 {
     // public function like(Request $request, string $likeable_type, string $likeable_id) {
     //     $modelName = 'App\\Models\\' . ucfirst($likeable_type);
@@ -13,7 +14,7 @@ class LikeController extends Controller
 
     //     $likeable = $modelName::where($routeKey, $likeable_id)->first();
     //}
-    
+
     ##############
     # Notice:
     ##############
@@ -21,10 +22,11 @@ class LikeController extends Controller
     # but it would be better if we write our logic in AppServiceProver.php to get likable id and type.
     # and it would be better if we put our code in Likeable Trait to create a query.(for like and dislike)
 
-
-    public function storeLike(Request $request, string $likeable_type, $likeable_id)
+    public function storeDislike(Request $request, string $likeable_type, $likeable_id)
     {
-        $likeable_id->likedBy(auth()->user());
+        $likeable_id->dislikedBy(auth()->user());
         return back();
     }
+
 }
+

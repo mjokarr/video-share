@@ -2,9 +2,14 @@
 
 namespace App\Models;
 
+use App\Observers\LikeObserver;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use App\Observers\UserObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+
+#[ObservedBy([LikeObserver::class])]
 
 class Like extends Model
 {

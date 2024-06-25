@@ -29,6 +29,7 @@ class StoreVideoRequest extends FormRequest
             'url' => ['required'],
             'thumbnail' => ['required', 'url'],
             'category_id' => ['required', 'exists:categories,id'],
+            'file' => ['required', 'mimetypes:video/mp4', 'max:20000'],
         ];
     }
 
@@ -36,6 +37,14 @@ class StoreVideoRequest extends FormRequest
     {
         $this->merge([
             'slug' => Str::slug($this->slug),
+            // 'file' => $this->url,
         ]);
     }
+
+
+    public function messages()
+    {
+        return ['file.*' => 'فایل شما باید با تایپ mp4 و کمتر از 20 مگابایت باشد'];
+    }
+
 }

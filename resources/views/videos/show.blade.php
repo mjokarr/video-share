@@ -3,7 +3,6 @@
 <div class="row">
     <!-- Watch -->
     <x-validation-errors></x-validation-errors>
-    <x-alert></x-alert>
     <div class="col-md-8">
 
         <div id="watch">
@@ -12,7 +11,7 @@
             <div class="video-code">
                 <video controls style="height: 100%; width: 100%;">
                     <source
-                        src="{{ $videos->url }}"
+                        src="{{ $videos->video_url }}"
                         type="video/mp4">
                 </video>
             </div><!-- // video-code -->
@@ -28,8 +27,8 @@
             <div class="video-share">
             @auth
                 <ul class="like">
-                    <li><a class="deslike" href="{{ route('video.dislike', $videos) }}">{{ $videos->dislike_count }}<i class="fa fa-thumbs-down"></i></a></li>
-                    <li><a class="like" href="{{ route('video.like', $videos) }}">{{ $videos->like_count }}<i class="fa fa-thumbs-up"></i></a></li>
+                    <li><a class="deslike" href="{{ route('dislike.store', ['likeable_type' => 'video', 'likeable_id' => $videos]) }}">{{ $videos->dislike_count }}<i class="fa fa-thumbs-down"></i></a></li>
+                    <li><a class="like" href="{{ route('like.store', ['likeable_type' => 'video', 'likeable_id' => $videos]) }}">{{ $videos->like_count }}<i class="fa fa-thumbs-up"></i></a></li>
                 </ul>
             @endauth
                 <ul class="social_link">
@@ -67,7 +66,23 @@
             <div id="comments" class="post-comments">
                 <h3 class="post-box-title"><span>{{ $videos->comments->count() }}</span> نظر</h3>
                 <ul class="comments-list">
-                    <x-comments :videos='$videos' />
+
+                    @foreach($videos->comments as $comment)
+                        <li>
+                            <div class="post_author">
+                                <div class="img_in">
+                                    <a href="#"><img src="{{ $comment->user->gravatar }}" alt=""></a>
+                                </div>
+                                <a href="#" class="author-name">{{ $comment->user->name }}</a>
+                                <time datetime="2017-03-24T18:18">{{ $comment->created_at }}</time>
+                            </div>
+                            <p>{{ $comment->body }}</p>
+                            <div style="display: flow; padding: 5px 5px 0 0;">
+                                <a class="deslike" style="color:#aaaaaa" href="{{ route('dislike.store', ['likeable_type' => 'comment', 'likeable_id' => $comment]) }}">{{ $comment->dislike_count }}<i class="fa fa-thumbs-down"></i></a>
+                                <a class="like" style="color:#66c0c2;margin-right: 5px" href="{{ route('like.store', ['likeable_type' => 'comment', 'likeable_id' => $comment]) }}">{{ $comment->like_count }}<i class="fa fa-thumbs-up"></i></a>
+                            </div>
+                        </li>
+                    @endforeach
 
                 </ul>
 

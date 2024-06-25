@@ -8,7 +8,7 @@
                     {{-- {{ dd($video) }} --}}
                     <div class="col-md-8">
 						<h1 class="page-title"><span>@lang('videos.upload')</span> @lang('videos.video')</h1>
-						<form action="{{ route('videos.update', $video->slug) }}" method="POST">
+						<form action="{{ route('videos.update', $video->slug) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                         	<div class="row">
                             	<div class="col-md-6">
@@ -25,7 +25,8 @@
                                 </div>
                             	<div class="col-md-6">
                                     <label>@lang('videos.url')</label>
-                                    <input name="url" type="text" class="form-control" value="{{ $video->url }}" placeholder="@lang('videos.url')">
+                                    {{-- <input name="url" type="text" class="form-control" value="{{ $video->url }}" placeholder="@lang('videos.url')"> --}}
+                                    <input type="file" name="file" class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                     <label>@lang('videos.category')</label>

@@ -2,20 +2,21 @@
 
 namespace App\Models;
 
-use App\Models\Category;
-use App\Models\Comment;
-use App\Models\Traits\Likeable;
 use App\Models\User;
+use App\Models\Comment;
+use App\Models\Category;
 use Hekmatinasser\Verta\Verta;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Traits\Likeable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Video extends Model
 {
     use HasFactory, Likeable;
 
     // protected $guarded = [];
-    protected $fillable = ['name', 'length', 'slug', 'thumbnail', 'description', 'url', 'category_id'];
+    protected $fillable = ['name', 'length', 'slug', 'thumbnail', 'description', 'url', 'category_id', 'file'];
 
     // protected $with = ['user', 'category', 'comments'];
 
@@ -103,6 +104,13 @@ class Video extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    protected function getVideoUrlAttribute()
+    {
+        // $uri = str_replace('public', 'storage', $this->url);
+        // return $url = 'http://localhost:8000/' . $uri;
+        return Storage::url($this->url);
     }
 }
 
