@@ -26,10 +26,9 @@ class StoreVideoRequest extends FormRequest
             'name' => ['required'],
             'length' => ['required', 'integer'],
             'slug' => ['required', 'unique:videos,slug', 'alpha_dash'],
-            'url' => ['required'],
+            'file' => ['required', 'mimetypes:video/mp4', 'max:20000'],
             'thumbnail' => ['required', 'url'],
             'category_id' => ['required', 'exists:categories,id'],
-            'file' => ['required', 'mimetypes:video/mp4', 'max:20000'],
         ];
     }
 
@@ -44,7 +43,7 @@ class StoreVideoRequest extends FormRequest
 
     public function messages()
     {
-        return ['file.*' => 'فایل شما باید با تایپ mp4 و کمتر از 20 مگابایت باشد'];
+        return ['file.*' => 'وجود فایلی با تایپ mp4 و کمتر از 20 مگابایت، برای ثبت ویدئو ضروری‌ست'];
     }
 
 }

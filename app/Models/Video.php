@@ -7,16 +7,19 @@ use App\Models\Comment;
 use App\Models\Category;
 use Hekmatinasser\Verta\Verta;
 use App\Models\Traits\Likeable;
+use App\Observers\VideoObserver;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 
+#[ObservedBy([VideoObserver::class])]
 class Video extends Model
 {
     use HasFactory, Likeable;
-
+    // protected $hidden = ['file'];
     // protected $guarded = [];
-    protected $fillable = ['name', 'length', 'slug', 'thumbnail', 'description', 'url', 'category_id', 'file'];
+    protected $fillable = ['name', 'length', 'slug', 'thumbnail', 'description', 'path', 'category_id'];
 
     // protected $with = ['user', 'category', 'comments'];
 
@@ -106,11 +109,11 @@ class Video extends Model
         return $this->hasMany(Comment::class);
     }
 
-    protected function getVideoUrlAttribute()
+    protected function getVideoPathAttribute()
     {
         // $uri = str_replace('public', 'storage', $this->url);
         // return $url = 'http://localhost:8000/' . $uri;
-        return Storage::url($this->url);
+        return Storage::url($this->path);
     }
 }
 

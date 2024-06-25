@@ -2,9 +2,10 @@
 
 namespace App\Providers;
 
-use App\Observers\LikeObserver;
+use App\Models\Video;
+use App\Observers\VideoObserver;
 use Illuminate\Support\ServiceProvider;
-use App\Models\Like;
+
 class EventServiceProvider extends ServiceProvider
 {
     /**
@@ -21,5 +22,6 @@ class EventServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // Like::observe(LikeObserver::class);
+        Video::observe(VideoObserver::class);
     }
 }

@@ -21,6 +21,7 @@ use App\Http\Controllers\DislikeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryVideoController;
 
+require '../vendor/autoload.php';
 
 
 
@@ -47,11 +48,22 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
 
 Route::post('/videos/{video}/comments', [CommentController::class, 'store'])->name('comments.store');
 
 Route::get('{likeable_type}/{likeable_id}/dislike', [DislikeController::class, 'storeDislike'])->name('dislike.store');
 Route::get('{likeable_type}/{likeable_id}/like', [LikeController::class, 'storeLike'])->name('like.store');
+
+require __DIR__.'/auth.php';
+
+// Route::get('/duration', function ()
+// {
+//     $ffprobe = FFMpeg\FFProbe::create();
+//     $duration = $ffprobe
+//     ->format(Storage::path('public/3mznDDh5YAtG2RsKMuitZTpsVwtgoxBAPlb8ttnN.mp4'))
+//     ->get('duration');
+//     dd($duration);
+// });
+
 
 
