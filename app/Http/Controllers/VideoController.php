@@ -5,19 +5,24 @@ use App\Models\Video;
 use App\Models\Category;
 use GuzzleHttp\Middleware;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rules\Exists;
 use App\Http\Requests\StoreVideoRequest;
 use App\Http\Middleware\CheckVerifyEmail;
 use App\Http\Requests\UpdateVideoRequest;
-use Illuminate\Validation\Rules\Exists;
+use App\Policies\VideoPolicy;
 
 class VideoController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->Middleware(CheckVerifyEmail::class);
-    // }
+    public function __construct()
+    {
+        // $this->Middleware(CheckVerifyEmail::class);
+        ##### NOTICE:
+        # We can instead of writing the authorization codes in every methods, write this like bottom code. its working for all...
+        // $this->authorizeResource(VideoPolicy::class, 'video');
+    }
 
     public function index()
     {
@@ -41,7 +46,7 @@ class VideoController extends Controller
     public function store(StoreVideoRequest $request)
     {
         $path = Storage::putFile('/public', $request->file('file'));
-        // dd($request->all(س));
+
         $request->merge([
             'path' => $path,
         ]);
@@ -62,6 +67,8 @@ class VideoController extends Controller
     # Show edit video page and set a new data with redirection plus slug Instead of int ID parameter and that message to user.
     public function edit(Video $video)
     {
+        Gate::authorize('update', $video);
+
         $categories = Category::all();
         return view('videos.edit', ['video' => $video, 'categories' => $categories]);
 
@@ -72,6 +79,7 @@ class VideoController extends Controller
     # this is a simple update only :)
     public function update(UpdateVideoRequest $request, Video $video)
     {
+        Gate::authorize('update', $video);
         if($request->hasFile('file'))
         {
             $path = Storage::putFile('/public', $request->file('file'));

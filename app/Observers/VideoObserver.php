@@ -20,6 +20,8 @@ class VideoObserver
      */
     public function updated(video $video): void
     {
+
+        # to dont deletion wen we use soft deletse, we should set this condition.
         if($video->wasChanged('path'))
         {
             Storage::delete($video->getOriginal('path'));
@@ -29,9 +31,12 @@ class VideoObserver
     /**
      * Handle the video "deleted" event.
      */
-    public function deleted(video $video): void
+    public function deleted(video $video)
     {
-        //
+        if($video->trashed()) return true;
+
+        Storage::delete($video->path);
+        // Storage::delete($video->thumbnail);
     }
 
     /**
@@ -47,6 +52,6 @@ class VideoObserver
      */
     public function forceDeleted(video $video): void
     {
-        //
+        Storage::delete($video->path);
     }
 }

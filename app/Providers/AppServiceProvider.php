@@ -35,6 +35,8 @@ class AppServiceProvider extends ServiceProvider
             return $modelName::where($routeKey, $route->parameters['likeable_id'])->first();
         });
 
+        View::addNamespace('errors', resource_path('views/errors'));
+
 
 
         # Bad Method to rewrite laravel email tipe:

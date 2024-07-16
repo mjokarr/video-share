@@ -9,7 +9,9 @@
         "barryvdh/laravel-debugbar": "^3.13",
         "hekmatinasser/verta": "^8.4",
         "laravel/framework": "^11.0",
+        "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
+        "pbmedia/laravel-ffmpeg": "^8.5",
         "php-ffmpeg/php-ffmpeg": "^1.2",
         "ybazli/faker": "^1.0"
     },

@@ -22,7 +22,7 @@ class VideoFactory extends Factory
     {
         return [
             'name' => Faker::fullName(),
-            'url' => 'https://www.aparat.com',
+            'path' => 'https://www.aparat.com',
             'length' => rand(100,999),
             'slug' => $this->faker->slug(),
             'description' => Faker::sentence(),

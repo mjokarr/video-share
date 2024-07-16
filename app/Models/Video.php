@@ -5,18 +5,22 @@ namespace App\Models;
 use App\Models\User;
 use App\Models\Comment;
 use App\Models\Category;
+use App\Filters\VideoFilters;
 use Hekmatinasser\Verta\Verta;
 use App\Models\Traits\Likeable;
 use App\Observers\VideoObserver;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 #[ObservedBy([VideoObserver::class])]
 class Video extends Model
 {
-    use HasFactory, Likeable;
+    use HasFactory, Likeable, SoftDeletes;
     // protected $hidden = ['file'];
     // protected $guarded = [];
     protected $fillable = ['name', 'length', 'slug', 'thumbnail', 'description', 'path', 'category_id'];
@@ -115,5 +119,16 @@ class Video extends Model
         // return $url = 'http://localhost:8000/' . $uri;
         return Storage::url($this->path);
     }
+    # the scopes was defined to set enythings in queries. when we have do works in queries that inapplicable, use scopes...
+    public function scopeFilter(Builder $builder, array $params)
+    {
+        return (new VideoFilters($builder))->apply($params);
+        return $builder;
+    }
+
+    // public function scopeSort(Builder $builder, array $params)
+    // {
+
+    // }
 }
 
